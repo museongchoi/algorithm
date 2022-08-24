@@ -1,4 +1,4 @@
-//#include <stdio.h>
+#include <stdio.h>
 //#include <stdlib.h>
 //#include <queue>
 //#define MAX_SIZE 101
@@ -164,3 +164,6 @@
 //	}
 //	return 0;
 //}
+int main() {
+	printf("hello");
+}
