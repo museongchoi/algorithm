@@ -1,20 +1,30 @@
 //#include <stdio.h>
+//#include <stdlib.h>
+//#include <queue>
 //#define MAX_SIZE 1001
+//int map[MAX_SIZE][MAX_SIZE] = { 0, };
 //int arr[MAX_SIZE] = { 0, };
 //int visit[MAX_SIZE] = { 0, };
-//int map[MAX_SIZE][MAX_SIZE] = { 0, };
 //int N;
 //int cycle = 0;
 //
-//void DFS(int x)
+//void BFS(int x)
 //{
 //	visit[x] = 1;
-//	for (int i = 1; i <= N; i++)
+//	std::queue<int> q;
+//	q.push(x);
+//
+//	while (q.empty()!=1)
 //	{
-//		if (map[x][i] == 1 && visit[i] != 1)
+//		int node = q.front();
+//		q.pop();
+//		for (int i = 1; i <= N; i++)
 //		{
-//			map[x][i] = 0;
-//			DFS(i);
+//			if (map[node][i] == 1 && visit[i] != 1)
+//			{
+//				q.push(i);
+//				visit[i] = 1;
+//			}
 //		}
 //	}
 //}
@@ -27,9 +37,9 @@
 //	for (int test = 0; test < T; test++)
 //	{
 //		cycle = 0;
-//		 2 <= N <= 1000
 //		scanf("%d", &N);
-//		for (int i = 0; i <= N; i++)
+//		// ÃÊ±âÈ­
+//		for (int i = 1; i <= N; i++)
 //		{
 //			for (int j = 0; j <= N; j++)
 //			{
@@ -40,6 +50,7 @@
 //		{
 //			visit[i] = 0;
 //		}
+//
 //		for (int n = 1; n <= N; n++)
 //		{
 //			scanf("%d", &arr[n]);
@@ -52,11 +63,10 @@
 //		{
 //			if (visit[j] == 0)
 //			{
-//				DFS(j);
+//				BFS(j);
 //				cycle++;
 //			}
 //		}
-//		
 //		printf("%d\n", cycle);
 //	}
 //
