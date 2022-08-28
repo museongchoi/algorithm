@@ -34,6 +34,11 @@ void RGB_DFS(int x, int y)
 
 void RG_DFS(int x, int y)
 {
+	// B 가 아닌것이라는 조건을 주면 더 간단해 진다
+	/*	if (x - 1 >= 0 && x - 1 < N && ((map[x - 1][y] != 'B')) && visit2[x - 1][y] != 1)
+	{
+		RG_DFS(x - 1, y);
+	}*/
 	visit2[x][y] = 1;
 	if (x - 1 >= 0 && x - 1 < N && ((map[x - 1][y] == 'R') || (map[x - 1][y] == 'G')) && visit2[x - 1][y] != 1)
 	{
@@ -88,6 +93,7 @@ int main()
 		}
 		getchar();
 	}
+
 	/*for (int i = 0; i < N; i++)
 	{
 		scanf("%s", &map[i]);
