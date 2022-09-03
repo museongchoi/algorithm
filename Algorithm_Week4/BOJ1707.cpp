@@ -1,27 +1,55 @@
 #include <stdio.h>
-#define MAX_SIZE 20000
+#define MAX_SIZE 2001
 
 int map[MAX_SIZE][MAX_SIZE] = { 0, };
-int visit[MAX_SIZE][MAX_SIZE] = { 0, };
+int visit[MAX_SIZE] = { 0, };
 int color[MAX_SIZE] = { 0, };
 int V;
-void DFS(int x)
+
+int DFS(int x)
 {
+	int p = 1;
+	if (visit[x] == 0)
+	{
+		visit[x] = 1;
+		color[x] = 1;
+	}
+
 	for (int i = 1; i <= V; i++)
 	{
-		if (map[x][i] == 1 && visit[x][i] != 1)
+		if (p == 0)
 		{
-			visit[x][i] = 1;
-			color[x] = 1;
-			color[i] = 2;
-			DFS(i);
+			break;
+		}
+		if (map[x][i] == 1)
+		{
+			if (map[x][i] == 1 && visit[i] == 0)
+			{
+				if (color[x] == 1)
+				{
+					color[i] = 2;
+				}
+				if (color[x] == 2)
+				{
+					color[i] = 1;
+				}
+				visit[i] = 1;
+				p = DFS(i);
+			}
+			else
+			{
+				if (color[x] == color[i])
+				{
+					return 0;
+				}
+			}
 		}
 	}
-}
-
-void check(int x, int y)
-{
-
+	if (p == 0)
+	{
+		return 0;
+	}
+	return 1;
 }
 
 int main()
@@ -31,6 +59,16 @@ int main()
 
 	for (int Test = 0; Test < K; Test++)
 	{
+		// ÃÊ±âÈ­
+		for (int i = 0; i <= V; i++)
+		{
+			for (int j = 0; j <= V; j++)
+			{
+				map[i][j] = 0;
+			}
+			visit[i] = 0;
+		}
+
 		scanf("%d%d", &V, &E);
 
 		for (int i = 1; i <= E; i++)
@@ -39,23 +77,23 @@ int main()
 			map[u][v] = 1;
 		}
 
+		int k;
 		for (int i = 1; i <= V; i++)
 		{
-			if (color == 0)
+			if (visit[i] == 0)
 			{
-				DFS(i);
+				k = DFS(i);
 			}
+		}
+		if (k == 0)
+		{
+			printf("NO\n");
+		}
+		else
+		{
+			printf("YES\n");
 		}
 
-		for (int i = 1; i <= V; i++)
-		{
-			for (int j = 1; j <= V; j++)
-			{
-				if (map[i][j] == 1)
-				{
-					check;
-				}
-			}
-		}
 	}
+	return 0;
 }
