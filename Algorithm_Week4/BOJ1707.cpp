@@ -1,9 +1,11 @@
 #include <stdio.h>
+#include <stdlib.h>
 #define MAX_SIZE 2001
 
-int map[MAX_SIZE][MAX_SIZE] = { 0, };
-int visit[MAX_SIZE] = { 0, };
-int color[MAX_SIZE] = { 0, };
+int **map;
+int visit[MAX_SIZE] = {0,};
+int color[MAX_SIZE] = {0,};
+// 정점의 개수 V, 간선의 개수 E
 int V;
 
 int DFS(int x)
@@ -59,7 +61,7 @@ int main()
 
 	for (int Test = 0; Test < K; Test++)
 	{
-		// �ʱ�ȭ
+		// 초기화
 		for (int i = 0; i <= V; i++)
 		{
 			for (int j = 0; j <= V; j++)
@@ -70,6 +72,12 @@ int main()
 		}
 
 		scanf("%d%d", &V, &E);
+		// 2차원 배열 map 동적할당
+		map = (int **)malloc(sizeof(int *) * V);
+		for (int i = 0; i < V; i++)
+		{
+			*map = (int *)malloc(sizeof(int) * V);
+		}
 
 		for (int i = 1; i <= E; i++)
 		{
@@ -85,6 +93,7 @@ int main()
 				k = DFS(i);
 			}
 		}
+
 		if (k == 0)
 		{
 			printf("NO\n");
@@ -93,7 +102,6 @@ int main()
 		{
 			printf("YES\n");
 		}
-
 	}
 	return 0;
 }
