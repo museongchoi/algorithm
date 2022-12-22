@@ -1,104 +1,104 @@
-//#include <stdio.h>
-//#include <stdlib.h>
-//#define MAX_ELEMENT 100 // ÃÖ´ë ¹è¿­ Å©±â
-//
-//typedef struct element
-//{
-//	int key;
-//}element;
-//
-//typedef struct
-//{
-//	element heap[MAX_ELEMENT]; // È÷ÇÁ ¹è¿­
-//	int heapSize;			   // È÷ÇÁ Å©±â
-//}HeapType;
-//
-//// heap Å©±â 0À¸·Î ÃÊ±âÈ­
-//void init(HeapType* h)
-//{
-//	h->heapSize = 0;
-//}
-//
-////insert
-//void ins(HeapType* h, element k)
-//{
-//	// 1) heap ¹è¿­ ¸Ç ³¡¿¡ ÀÓ½Ã ³ëµå »ğÀÔ
-//	int idx = ++h->heapSize;
-//
-//	while (idx != 1 && k.key < h->heap[idx / 2].key)
-//	{
-//		h->heap[idx] = h->heap[idx / 2];
-//		idx = idx / 2;
-//	}
-//	h->heap[idx] = k;
-//}
-//
-////delete
-//element del(HeapType* h)
-//{
-//	element root = h->heap[1];
-//	element tmp = h->heap[(h->heapSize)--];
-//
-//	//p, c index·Î ÀÛÀº°ª Å«°ª ±¸ºĞ
-//	int p = 1, c = 2;
-//
-//	while (c <= h->heapSize)
-//	{
-//		// ¿À¸¥ÂÊ °ªÀÌ ¿ŞÂÊ °ªº¸´Ù ÀÛÀ» °æ¿ì
-//		if (c <h->heapSize && h->heap[c].key > h->heap[c + 1].key)
-//		{
-//			c++;
-//		}
-//		// ºÎ¸ğ°¡ ÀÚ½Äº¸´Ù ÀÛÀ¸¸é ºüÁ®³ª¿Â´Ù
-//		if (h->heap[c].key >= tmp.key)
-//		{
-//			break;
-//		}
-//		// ºÎ¸ğ¿¡ ÀÚ½Ä º¹»ç
-//		h->heap[p] = h->heap[c];
-//		// p, c index ÀÌµ¿
-//		p = c;
-//		c *= 2;
-//	}
-//	h->heap[p] = tmp;
-//	return root;
-//}
-//
-//void heapSort(HeapType* h, int arr[])
-//{
-//	
-//	element add1; // Çüº¯È¯
-//
-//	for (int i = 0; i < 6; i++)
-//	{
-//		add1 = del(h);
-//		arr[i] = add1.key;
-//	}
-//
-//	for (int j = 0; j < 6; j++)
-//	{
-//		printf("%d ", arr[j]);
-//	}
-//
-//}
-//
-//int main()
-//{
-//	HeapType h;
-//	init(&h);
-//
-//	int arr[6] = { 3,5,8,1,2,7 };
-//	int arr1[6] = { 0, }; // »õ·Î¿î ¹è¿­ °ø°£
-//
-//	
-//	element add; // Çüº¯È¯
-//	for (int j = 0; j < 6; j++)
-//	{
-//		add.key = arr[j];
-//		ins(&h, add);
-//	}
-//
-//	heapSort(&h, arr1);
-//
-//	return 0;
-//}
+#include <stdio.h>
+#include <stdlib.h>
+#define MAX_ELEMENT 100 // ìµœëŒ€ ë°°ì—´ í¬ê¸°
+
+typedef struct element
+{
+	int key;
+}element;
+
+typedef struct
+{
+	element heap[MAX_ELEMENT]; // íˆí”„ ë°°ì—´
+	int heapSize;			   // íˆí”„ í¬ê¸°
+}HeapType;
+
+// heap í¬ê¸° 0ìœ¼ë¡œ ì´ˆê¸°í™”
+void init(HeapType* h)
+{
+	h->heapSize = 0;
+}
+
+//insert
+void ins(HeapType* h, element k)
+{
+	// 1) heap ë°°ì—´ ë§¨ ëì— ì„ì‹œ ë…¸ë“œ ì‚½ì…
+	int idx = ++h->heapSize;
+
+	while (idx != 1 && k.key < h->heap[idx / 2].key)
+	{
+		h->heap[idx] = h->heap[idx / 2];
+		idx = idx / 2;
+	}
+	h->heap[idx] = k;
+}
+
+//delete
+element del(HeapType* h)
+{
+	element root = h->heap[1];
+	element tmp = h->heap[(h->heapSize)--];
+
+	//p, c indexë¡œ ì‘ì€ê°’ í°ê°’ êµ¬ë¶„
+	int p = 1, c = 2;
+
+	while (c <= h->heapSize)
+	{
+		// ì˜¤ë¥¸ìª½ ê°’ì´ ì™¼ìª½ ê°’ë³´ë‹¤ ì‘ì„ ê²½ìš°
+		if (c <h->heapSize && h->heap[c].key > h->heap[c + 1].key)
+		{
+			c++;
+		}
+		// ë¶€ëª¨ê°€ ìì‹ë³´ë‹¤ ì‘ìœ¼ë©´ ë¹ ì ¸ë‚˜ì˜¨ë‹¤
+		if (h->heap[c].key >= tmp.key)
+		{
+			break;
+		}
+		// ë¶€ëª¨ì— ìì‹ ë³µì‚¬
+		h->heap[p] = h->heap[c];
+		// p, c index ì´ë™
+		p = c;
+		c *= 2;
+	}
+	h->heap[p] = tmp;
+	return root;
+}
+
+void heapSort(HeapType* h, int arr[])
+{
+	
+	element add1; // í˜•ë³€í™˜
+
+	for (int i = 0; i < 6; i++)
+	{
+		add1 = del(h);
+		arr[i] = add1.key;
+	}
+
+	for (int j = 0; j < 6; j++)
+	{
+		printf("%d ", arr[j]);
+	}
+
+}
+
+int main()
+{
+	HeapType h;
+	init(&h);
+
+	int arr[6] = { 3,5,8,1,2,7 };
+	int arr1[6] = { 0, }; // ìƒˆë¡œìš´ ë°°ì—´ ê³µê°„
+
+	
+	element add; // í˜•ë³€í™˜
+	for (int j = 0; j < 6; j++)
+	{
+		add.key = arr[j];
+		ins(&h, add);
+	}
+
+	heapSort(&h, arr1);
+
+	return 0;
+}
